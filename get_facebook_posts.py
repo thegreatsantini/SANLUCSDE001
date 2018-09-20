@@ -1,6 +1,7 @@
 # import libraries
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import json
 
 event_list = []
 # specify the url
@@ -36,3 +37,6 @@ def scrape_facebook (post, count):
     return scrape_facebook(next_event, count-1)
 
 scrape_facebook(card, 8)
+
+with open('posts.txt', 'w') as outfile:
+    json.dump(event_list, outfile)

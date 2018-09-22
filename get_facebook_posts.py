@@ -2,8 +2,9 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import json
+import codecs
 
-event_list = []
+posts_list = []
 # specify the url
 page = "https://www.facebook.com/pg/expedia/posts/"
 html = urlopen(page)
@@ -31,12 +32,12 @@ def scrape_facebook (post, count):
         # event content
         event_content = current_card.find("div", attrs={"class": "userContent"})
         event_dict["text"] =  event_content.text
-        event_list.append(event_dict)
+        posts_list.append(event_dict)
         next_event = current_card.find_next("div", attrs={"class":"userContentWrapper"})
 
     return scrape_facebook(next_event, count-1)
 
 scrape_facebook(card, 8)
 
-with open('posts.txt', 'w') as outfile:
-    json.dump(event_list, outfile)
+with open('SANLUCSDE001/facebook_posts.txt', 'wb') as outfile:
+  json.dump(posts_list, codecs.getwriter('utf-8')(outfile), ensure_ascii=False)

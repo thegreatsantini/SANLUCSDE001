@@ -1,7 +1,7 @@
 # SANLUCSDE001
 
 ## Runing the script
-    1) in your terminal run ```git clone https://github.com/thegreatsantini/SANLUCSDE001.git```
-    2) cd to the directory and run ```python3 get_facebook_posts.py
+    1) in your terminal run ``git clone https://github.com/thegreatsantini/SANLUCSDE001.git``
+    2) cd to the directory and run ``python3 get_facebook_posts.py``
 
 This challenge required me to scrape the 8 most recent posts from Expedia's Facebook page. I first had to decide what language and tool to use. First, I choose Python because it has a very mature web scrapping library. I next did research on which scraping tool to use and I finally landed on using beautifulSoup. In order to scrape the website I had to first familiarize myself with the DOM; I did this by stepping through the HTML using the dev console. I loaded the HTML using beautiful soup and began to "grab" the required information using class names and HTML tags. Because I knew the limit of posts to scrape I knew that I could just "grab" the posts using the built in method of .find_next. I traversed it similar to a linked list where I began at the Head node and with each loop I reassigned the current node as the .next(.find_next) node, I could do this how ever many times I wanted using a while loop or recursively. I choose to do it recursively because I only had to grab 8 elements so the stack trace wasn't a concern. I created the data in the shape that I wanted in each loop by first instantiating a global posts_list list and in each loop I instantiated an empty current_post dictionary, for each dict I placed a key value pair corresponding to the necessary information at the end of each loop I appended the current dict to the global posts list. Once the function finished running I was ready to write the data to a separate file. I used a built in Python method for writing into files.
